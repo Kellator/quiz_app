@@ -2,7 +2,7 @@
 var state = {
 	//questions is an object that stores the multiple question values 
 	//text, choices, and correctInputIndex.
-	questions = [ 
+	var questions = [ 
 	{ 
 		text: "What is the name of the dinosaur that Harry Dresden reanimates in the novel, 'Dead Beat'?",
 		choices: ["Lucy", "Sue", "Nessie", "Rexy"],
@@ -53,12 +53,51 @@ var state = {
 		choices: ["John Marcone", "Harley McFinn", "Jared Kincaid", "Lex Hamilton"],
 		correctInputIndex: 0
 	}
-	
+	var totalQuestions = questions.length
+	var totalAskedQuestions = 0
+	var totalCorrectQuestions = 0
+	var totalIncorrectQuestions = 0
+	var currentScore = 0
+
+	var	currentQuestion = 0
+
+
 	]
 }
 
 //functions that modify the state object
+//asks question
+function askQuestion(state, question) {
+
+}
+//question counter update
+function questionCounter(state) {
+	
+
+}
+//questions right wrong counter
+//
+//reset
+function quizReset(state) {
+	currentScore = 0
+	currentQuestion = 0
+} 
+
+
 
 //functions that render the state object
+//rewrites the html?
+var renderQuestions = function(state, element) {
+	var	questionsHTML = 
+	}
+}
 
 //event listeners
+
+//quiz start button listener
+$('.start_quiz').click(function(event) {
+	event.preventDefault()
+});
+//quiz reset button listener - set counters to 0
+
+//listen for question to be asked to toggle class to unavailable?
