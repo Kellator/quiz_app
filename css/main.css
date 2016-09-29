@@ -58,6 +58,16 @@ img	{
 	margin-right: auto;
 	margin-left: auto;
 }
+
+.restart_quiz {
+	height: 75px;
+	font-size: 24px;
+	background-color: #26466D;
+	color: #FFFFFF;
+	border-radius: 10px;
+	float: right;
+	display: inline-block;
+}
 button:hover {
 	background-color: #FFFFFF;
 	color: #708090;
