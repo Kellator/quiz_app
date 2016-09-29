@@ -66,38 +66,41 @@ var state = {
 }
 
 //functions that modify the state object
-//asks question
+//asks question (game start)
 function askQuestion(state, question) {
 
 }
 //question counter update
 function questionCounter(state) {
-	
+
 
 }
 //questions right wrong counter
-//
+
 //reset
 function quizReset(state) {
-	currentScore = 0
-	currentQuestion = 0
+	state.currentScore = 0
+	state.currentQuestion = 0
+	state.totalIncorrectQuestions = 0
+	state.totalCorrectQuestions = 0
 } 
+function nextQuestion(state) {
 
+}
 
 
 //functions that render the state object
 //rewrites the html?
-var renderQuestions = function(state, element) {
-	var	questionsHTML = 
-	}
-}
 
 //event listeners
 
 //quiz start button listener
-$('.start_quiz').click(function(event) {
+$('.start_quiz').click(askQuestion(event) {
 	event.preventDefault()
 });
 //quiz reset button listener - set counters to 0
+$('.reset_quiz').click(quizReset() {
+	event.preventDefault()
+});
 
 //listen for question to be asked to toggle class to unavailable?

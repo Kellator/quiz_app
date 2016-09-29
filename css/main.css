@@ -68,6 +68,11 @@ img	{
 	float: right;
 	display: inline-block;
 }
+
+.answer_submit {
+	padding: 4px;
+	border-radius: 10px;
+}
 button:hover {
 	background-color: #FFFFFF;
 	color: #708090;
