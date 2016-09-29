@@ -50,7 +50,6 @@ img	{
 }
 
 .start_quiz {
-	width: 250px;
 	height: 75px;
 	font-size: 24px;
 	background-color: #26466D;
@@ -71,4 +70,7 @@ h1, h3 {
 
 li {
 	font-size: 18px;
+}
+footer {
+	color: #FFFFFF;
 }
