@@ -37,7 +37,7 @@ padding is gutter (each side is 1/2 of 20px)
 }
 */
 /*mobile device default settings*/
-.col_4, .col_12, .col_3, .col_6 {
+.col_4, .col_12, .col_3, .col_6, .col_2{
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;

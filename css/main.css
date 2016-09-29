@@ -67,10 +67,24 @@ h1, h3 {
 	text-align: center;
 	color: #FFFFFF
 }
+.current_score {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	background-color: #26466D;
+	color: #FFFFFF;
+	border-radius: 10px;
+	border: solid 2px #D3D3D3;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
 li {
 	font-size: 18px;
 }
 footer {
 	color: #FFFFFF;
+}
+.hidden {
+	display: none;
 }
