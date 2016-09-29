@@ -31,11 +31,11 @@
 /*float for all elements to line up,
 padding is gutter (each side is 1/2 of 20px)
 10px/960px = 1.041666%*/
-.col_4, .col_12, .col_3, .col_6 {
+/*.col_4, .col_12, .col_3, .col_6 {
 	padding-left: 1.04666%;
 	padding-right: 1.04666%;
 }
-
+*/
 /*mobile device default settings*/
 .col_4, .col_12, .col_3, .col_6 {
 	width: 100%;

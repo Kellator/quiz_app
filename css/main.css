@@ -5,7 +5,7 @@ li {
 	list-style: none;
 }
 body {
-	background-color: 	#A9A9A9;
+	background-color: 	#0A0A0A;
 }
 
 span {
@@ -19,8 +19,8 @@ span {
 	margin-left: auto;
 }*/
 .question_block {
-	max-width: 75%;
-	background-color: #2F4F4F;
+	max-width: 100%;
+	background-color: #1A1A1A;
 	color:#FFFFFF;
 	border:solid 2px #D3D3D3;
 	margin-bottom: 20px;
@@ -30,6 +30,17 @@ span {
 img	{
 	border-radius: 10px;
 	border:2px solid #D3D3D3;
+	max-width: 100%;
+	object-fit: fill;
+
+}
+
+.container {
+	width: 100%;
+	margin-bottom: 20px;
+}
+.col_6 img {
+	padding: 0px;
 }
 
 .question_text {
@@ -42,9 +53,11 @@ img	{
 	width: 250px;
 	height: 75px;
 	font-size: 24px;
-	background-color: #2F4F4F;
+	background-color: #26466D;
 	color: #FFFFFF;
 	border-radius: 10px;
+	margin-right: auto;
+	margin-left: auto;
 }
 button:hover {
 	background-color: #FFFFFF;
@@ -53,6 +66,7 @@ button:hover {
 
 h1, h3 {
 	text-align: center;
+	color: #FFFFFF
 }
 
 li {
