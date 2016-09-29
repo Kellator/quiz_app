@@ -2,118 +2,143 @@
 <html>
 <head>
 	<meta charset="utf-8" name="The Harry Desden Novels Quiz">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="grid.css">
-	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="css/grid.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<title>The Harry Dresden Novels Quiz</title>
 </head>
 <body>
 	<header>
-		<h1>The Harry Dresden Pop Quiz</h1>
-		<h3>How much do you know about this wizard Harry?</h3>
-		<img src="images/hd_tvimage.jpg" alt="image of actor Paul Blackthorne from Harry Desden t.v. series">
+		<div class="row">
+			<div class="col_12">
+				<h1>The Harry Dresden Pop Quiz</h1>
+				<h3>How much do you know about this wizard Harry?</h3>
+				<img src="images/hd_tvimage.jpg" alt="image of actor Paul Blackthorne from Harry Desden t.v. series">
 		<button class="start_quiz">Test Yourself</button>
 	</header>
 
-	<div class="questions">
+	<div class="questions col_12">
 
 		<form>
-			<div class="question_block col_6">
-				<p class="question_text" id="dinosaur_question">What is the name of the dinosaur that Harry Dresden reanimates in the novel, <span class="book_title">Dead Beat</span>?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="dinosaur" value="0" id="dinosaur_ans_1"><label for="dinosaur_ans_1">Lucy</label></li>
-						<li><input type="radio" name="dinosaur" value="1" id="dinosaur_ans_2"><label for="dinosaur_ans_2">Sue</label></li>
-						<li><input type="radio" name="dinosaur" value="2" id="dinosaur_ans_3"><label for="dinosaur_ans_3">Nessie</label></li>
-						<li><input type="radio" name="dinosaur" value="3" id="dinosaur_ans_4"><label for="dinosaur_ans_4">Rexy</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="dinosaur_question">What is the name of the dinosaur that Harry Dresden reanimates in the novel, <span class="book_title">Dead Beat</span>?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="dinosaur" value="0" id="dinosaur_ans_1"><label for="dinosaur_ans_1">Lucy</label></li>
+							<li><input type="radio" name="dinosaur" value="1" id="dinosaur_ans_2"><label for="dinosaur_ans_2">Sue</label></li>
+							<li><input type="radio" name="dinosaur" value="2" id="dinosaur_ans_3"><label for="dinosaur_ans_3">Nessie</label></li>
+							<li><input type="radio" name="dinosaur" value="3" id="dinosaur_ans_4"><label for="dinosaur_ans_4">Rexy</label></li>
+				</div>
 			</div>
 
-			<div class="question_block">
-				<p class="question_text" id="shoulder_check">Who shoulder-checks Harry Dresden almost everytime he returns to his apartment?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="shoulder" value="0" id="shoulder_ans_1"><label for="shoulder_ans_1">Thomas</label></li>
-						<li><input type="radio" name="shoulder" value="1" id="shoulder_ans_2"><label for="shoulder_ans_2">Karrin</label></li>
-						<li><input type="radio" name="shoulder" value="2" id="shoulder_ans_3"><label for="shoulder_ans_3">Mister</label></li>
-						<li><input type="radio" name="shoulder" value="3" id="shoulder_ans_4"><label for="shoulder_ans_4">Bob</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="shoulder_check">Who shoulder-checks Harry Dresden almost everytime he returns to his apartment?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="shoulder" value="0" id="shoulder_ans_1"><label for="shoulder_ans_1">Thomas</label></li>
+							<li><input type="radio" name="shoulder" value="1" id="shoulder_ans_2"><label for="shoulder_ans_2">Karrin</label></li>
+							<li><input type="radio" name="shoulder" value="2" id="shoulder_ans_3"><label for="shoulder_ans_3">Mister</label></li>
+							<li><input type="radio" name="shoulder" value="3" id="shoulder_ans_4"><label for="shoulder_ans_4">Bob</label></li>
+				</div>
 			</div>
 
-			<div class="question_block">
-				<p class="question_text" id="polka_never_dies">According to Harry Dresden in <span class="book_title">Dead Beat</span>, what never dies?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="polka" value="0" id="dinosaur_ans_1"><label for="polka_ans_1">Polka</label></li>
-						<li><input type="radio" name="polka" value="1" id="dinosaur_ans_2"><label for="polka_ans_2">Butters</label></li>
-						<li><input type="radio" name="polka" value="2" id="dinosaur_ans_3"><label for="polka_ans_3">Evil</label></li>
-						<li><input type="radio" name="polka" value="3" id="dinosaur_ans_4"><label for="polka_ans_4">Magic</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="polka_never_dies">According to Harry Dresden in <span class="book_title">Dead Beat</span>, what never dies?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="polka" value="0" id="dinosaur_ans_1"><label for="polka_ans_1">Polka</label></li>
+							<li><input type="radio" name="polka" value="1" id="dinosaur_ans_2"><label for="polka_ans_2">Butters</label></li>
+							<li><input type="radio" name="polka" value="2" id="dinosaur_ans_3"><label for="polka_ans_3">Evil</label></li>
+							<li><input type="radio" name="polka" value="3" id="dinosaur_ans_4"><label for="polka_ans_4">Magic</label></li>
+				</div>
 			</div>
 
-			<div class="question_block">
-				<p class="question_text" id="summer_knight">In <span class="book_title">Summer Knight</span>, what injury does Karrin Murphy sustain during the fight at the 24 hour Walmart?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="knight" value="0" id="knight_ans_1"><label for="knight_ans_1">Shot by a sniper</label></li>
-						<li><input type="radio" name="knight" value="1" id="knight_ans_2"><label for="knight_ans_2">Burned by faerie fire</label></li>
-						<li><input type="radio" name="knight" value="2" id="knight_ans_3"><label for="knight_ans_3">Knee injury due to slipping on marbles</label></li>
-						<li><input type="radio" name="knight" value="3" id="knight_ans_4"><label for="knight_ans_4">Concussion</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="summer_knight">In <span class="book_title">Summer Knight</span>, what injury does Karrin Murphy sustain during the fight at the 24 hour Walmart?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="knight" value="0" id="knight_ans_1"><label for="knight_ans_1">Shot by a sniper</label></li>
+							<li><input type="radio" name="knight" value="1" id="knight_ans_2"><label for="knight_ans_2">Burned by faerie fire</label></li>
+							<li><input type="radio" name="knight" value="2" id="knight_ans_3"><label for="knight_ans_3">Knee injury due to slipping on marbles</label></li>
+							<li><input type="radio" name="knight" value="3" id="knight_ans_4"><label for="knight_ans_4">Concussion</label></li>
+				</div>
 			</div>
 
-			<div class="question_block">
-				<p class="question_text" id="rampage_question">What stuffed animal of a popular cartoon charater does Harry Dresden use to subdue the loup garou when it goes on a rampage in the police station in the novel, <span class="book_title">Fool Moon</span>?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="rampage" value="0" id="rampage_ans_1"><label for="rampage_ans_1">Snoopy</label></li>
-						<li><input type="radio" name="rampage" value="1" id="rampage_ans_2"><label for="rampage_ans_2">Garfield</label></li>
-						<li><input type="radio" name="rampage" value="2" id="rampage_ans_3"><label for="rampage_ans_3">Teddy Ruxpin</label></li>
-						<li><input type="radio" name="rampager" value="3" id="rampage_ans_4"><label for="rampage_ans_4">Hobbs</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="rampage_question">What stuffed animal of a popular cartoon charater does Harry Dresden use to subdue the loup garou when it goes on a rampage in the police station in the novel, <span class="book_title">Fool Moon</span>?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="rampage" value="0" id="rampage_ans_1"><label for="rampage_ans_1">Snoopy</label></li>
+							<li><input type="radio" name="rampage" value="1" id="rampage_ans_2"><label for="rampage_ans_2">Garfield</label></li>
+							<li><input type="radio" name="rampage" value="2" id="rampage_ans_3"><label for="rampage_ans_3">Teddy Ruxpin</label></li>
+							<li><input type="radio" name="rampager" value="3" id="rampage_ans_4"><label for="rampage_ans_4">Hobbs</label></li>
+				</div>
 			</div>
 
-			<div class="question_block">
-				<p class="question_text" id="edinborough_castle">In the Dresden Files, whose headquarters are located underneath Edinborough, Scotland?
-					<ul class="answers"></ul>
-						<li><input type="radio" name="edinborough" value="0" id="edinborough_ans_1"><label for="edinborough_ans_1">The Winter Court</label></li>
-						<li><input type="radio" name="edinborough" value="1" id="edinborough_ans_2"><label for="edinborough_ans_2">The Council of Five</label></li>
-						<li><input type="radio" name="edinborough" value="2" id="edinborough_ans_3"><label for="edinborough_ans_3">The White Council</label></li>
-						<li><input type="radio" name="edinborough" value="3" id="edinborough_ans_4"><label for="edinborough_ans_4">The Red Court</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="edinborough_castle">In the Dresden Files, whose headquarters are located underneath Edinborough, Scotland?
+						<ul class="answers"></ul>
+							<li><input type="radio" name="edinborough" value="0" id="edinborough_ans_1"><label for="edinborough_ans_1">The Winter Court</label></li>
+							<li><input type="radio" name="edinborough" value="1" id="edinborough_ans_2"><label for="edinborough_ans_2">The Council of Five</label></li>
+							<li><input type="radio" name="edinborough" value="2" id="edinborough_ans_3"><label for="edinborough_ans_3">The White Council</label></li>
+							<li><input type="radio" name="edinborough" value="3" id="edinborough_ans_4"><label for="edinborough_ans_4">The Red Court</label></li>
+				</div>
 			</div>
 
-			<div class="question_block">
-				<p class="question_text" id="fix_question">After the events of <span class="book_title">Summer Knight</span>to which court does Fix belong?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="fix" value="0" id="fix_ans_1"><label for="fixr_ans_1">The Summer Court</label></li>
-						<li><input type="radio" name="fix" value="1" id="fix_ans_2"><label for="fix_ans_2">The Winter Court</label></li>
-						<li><input type="radio" name="fix" value="2" id="fix_ans_3"><label for="fix_ans_3">The Red Court</label></li>
-						<li><input type="radio" name="fix" value="3" id="fix_ans_4"><label for="fix_ans_4">THe Black Court</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="fix_question">After the events of <span class="book_title">Summer Knight</span>to which court does Fix belong?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="fix" value="0" id="fix_ans_1"><label for="fixr_ans_1">The Summer Court</label></li>
+							<li><input type="radio" name="fix" value="1" id="fix_ans_2"><label for="fix_ans_2">The Winter Court</label></li>
+							<li><input type="radio" name="fix" value="2" id="fix_ans_3"><label for="fix_ans_3">The Red Court</label></li>
+							<li><input type="radio" name="fix" value="3" id="fix_ans_4"><label for="fix_ans_4">THe Black Court</label></li>
+				</div>
 			</div>	
 
-			<div class="question_block">
-				<p class="question_text" id="wraith_question">Who is Thomas Wraith?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="wraith" value="0" id="wraith_ans_1"><label for="wraith_ans_1">The White King</label></li>
-						<li><input type="radio" name="wraith" value="1" id="wraith_ans_2"><label for="wraith_ans_2">Karrin Murphy's second husband</label></li>
-						<li><input type="radio" name="wraith" value="2" id="wraith_ans_3"><label for="wraith_ans_3">Harry's half-brother</label></li>
-						<li><input type="radio" name="wraith" value="3" id="wraith_ans_4"><label for="wraith_ans_4">Harry's favorite bartender</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="wraith_question">Who is Thomas Wraith?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="wraith" value="0" id="wraith_ans_1"><label for="wraith_ans_1">The White King</label></li>
+							<li><input type="radio" name="wraith" value="1" id="wraith_ans_2"><label for="wraith_ans_2">Karrin Murphy's second husband</label></li>
+							<li><input type="radio" name="wraith" value="2" id="wraith_ans_3"><label for="wraith_ans_3">Harry's half-brother</label></li>
+							<li><input type="radio" name="wraith" value="3" id="wraith_ans_4"><label for="wraith_ans_4">Harry's favorite bartender</label></li>
+				</div>
 			</div>		
 
-			<div class="question_block">
-				<p class="question_text" id="mab_question">Where do members of the Unseelie Accords face the wrath of the Winter Queen if they start fighting with one another?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="mab" value="0" id="mab_ans_1"><label for="mab_ans_1">The Archive</label></li>
-						<li><input type="radio" name="mab" value="1" id="mab_ans_2"><label for="mab_ans_2">Accorded Neutral Ground</label></li>
-						<li><input type="radio" name="mab" value="2" id="mab_ans_3"><label for="mab_ans_3">Within sight of the sea</label></li>
-						<li><input type="radio" name="mab" value="3" id="mab_ans_4"><label for="mab_ans_4">Demon Reach</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="mab_question">Where do members of the Unseelie Accords face the wrath of the Winter Queen if they start fighting with one another?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="mab" value="0" id="mab_ans_1"><label for="mab_ans_1">The Archive</label></li>
+							<li><input type="radio" name="mab" value="1" id="mab_ans_2"><label for="mab_ans_2">Accorded Neutral Ground</label></li>
+							<li><input type="radio" name="mab" value="2" id="mab_ans_3"><label for="mab_ans_3">Within sight of the sea</label></li>
+							<li><input type="radio" name="mab" value="3" id="mab_ans_4"><label for="mab_ans_4">Demon Reach</label></li>
+				</div>
 			</div>	
 
-			<div class="question_block">
-				<p class="question_text" id="mobster_question">Who is the Chicago mobster with the money colored eyes?</p>
-					<ul class="answers"></ul>
-						<li><input type="radio" name="mobster" value="0" id="mobster_ans_1"><label for="mobster_ans_1">John Marcone</label></li>
-						<li><input type="radio" name="mobster" value="1" id="mobster_ans_2"><label for="mobster_ans_2">Harley McFinn</label></li>
-						<li><input type="radio" name="mobster" value="2" id="mobster_ans_3"><label for="mobster_ans_3">Jared Kincaid</label></li>
-						<li><input type="radio" name="mobster" value="3" id="mobster_ans_4"><label for="mobster_ans_4">Lex Hamilton</label></li>
+			<div class="row">
+				<div class="question_block col_6">
+					<p class="question_text" id="mobster_question">Who is the Chicago mobster with the money colored eyes?</p>
+						<ul class="answers"></ul>
+							<li><input type="radio" name="mobster" value="0" id="mobster_ans_1"><label for="mobster_ans_1">John Marcone</label></li>
+							<li><input type="radio" name="mobster" value="1" id="mobster_ans_2"><label for="mobster_ans_2">Harley McFinn</label></li>
+							<li><input type="radio" name="mobster" value="2" id="mobster_ans_3"><label for="mobster_ans_3">Jared Kincaid</label></li>
+							<li><input type="radio" name="mobster" value="3" id="mobster_ans_4"><label for="mobster_ans_4">Lex Hamilton</label></li>
+				</div>
 			</div>	
 
 		</form>
 	</div>
+
+
 	<footer>
 		<p>Quiz created by Kelly Miller</p>
 		<p>Twitter:<a href="">@Kellator_Miller</a></p>
-		<p>For more information about the Harry Dredent series, <a href="http://www.jim-butcher.com/books/dresden">Check out Jim Butcher</a></p>
+		<p>For more information about the Dresden Files, <a href="http://www.jim-butcher.com/books/dresden">Check out Jim Butcher</a></p>
 	</footer>
 
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
