@@ -67,7 +67,7 @@ var state = {
 
 //functions that modify the state object
 //asks question (game start)
-function setRoute(state,route) {
+function setRoute(state, route) {
 	state.route = route;
 }
 //question counter update
@@ -106,14 +106,16 @@ function renderQuestionCounter(state, element) {
 
 //event listeners
 //quiz start button listener
-$('.start_quiz').click(askQuestion(event) {
-	event.preventDefault()
+$('.start_quiz').click(function(event) {
+	event.preventDefault();
+	nextQuestion(state);
 });
 //quiz reset button listener - set counters to 0
-$('.reset_quiz').click(quizReset(event) {
-	event.preventDefault()
+$('.reset_quiz').click(function(event) {
+	event.preventDefault();
+	quizReset(state);
 });
 //allows user to submit answer and move on to next question
-$('.answer_submit').click(nextQuestion(event) {
-	event.preventDefault()
+$('.answer_submit').click(function(event) {
+	event.preventDefault();
 });
