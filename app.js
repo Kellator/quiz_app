@@ -53,16 +53,16 @@ var state = {
 		choices: ["John Marcone", "Harley McFinn", "Jared Kincaid", "Lex Hamilton"],
 		correctInputIndex: 0
 	}
-	var totalQuestions = questions.length
-	var totalAskedQuestions = 0
-	var totalCorrectQuestions = 0
-	var totalIncorrectQuestions = 0
-	var currentScore = 0
-
-	var	currentQuestion = 0
-
-
 	]
+	var totalQuestions = questions.length,
+	var currentScore = 0, //number right
+	var	currentQuestion = 0, //index of current question
+	
+	var feedback_correct = "Good Job!  You didn't disappoint me.",
+	var feedback_incorrect = "Oh, well, no.  That's not the answer.  Are you sure you read closely enough?",
+	var feedback_complete = "You've finished the quiz.  Good job.  Let's see how you did.",
+	
+	var route = "start" //??
 }
 
 //functions that modify the state object
@@ -71,36 +71,46 @@ function askQuestion(state, question) {
 
 }
 //question counter update
-function questionCounter(state) {
+//	//each time askQuestion call questionCounter +=1
+//	state.totalAskedQuestions++
+//}
 
-
-}
 //questions right wrong counter
+//if question answer correctly +=1
+//if answered incorrectly counter remains the same
+//answer question
 
 //reset
 function quizReset(state) {
-	state.currentScore = 0
-	state.currentQuestion = 0
-	state.totalIncorrectQuestions = 0
-	state.totalCorrectQuestions = 0
+	state.currentScore = 0,
+	state.currentQuestion = 0,
+	//setRoute(state, "start")??
 } 
-function nextQuestion(state) {
 
+function nextQuestion(state) {
+if (state.currentQuestion === state.questions.length) {
+	state.feedback_complete;
+}
 }
 
 
 //functions that render the state object
-//rewrites the html?
+//counter - takes current question index and incremenets
+function renderQuestionCounter(state, element) {
+	var text = (state.currentQuestion + 1) + "/" + state.questions.length;
+	element.text(text);
+}
 
 //event listeners
-
 //quiz start button listener
 $('.start_quiz').click(askQuestion(event) {
 	event.preventDefault()
 });
 //quiz reset button listener - set counters to 0
-$('.reset_quiz').click(quizReset() {
+$('.reset_quiz').click(quizReset(event) {
 	event.preventDefault()
 });
-
-//listen for question to be asked to toggle class to unavailable?
+//allows user to submit answer and move on to next question
+$('.answer_submit').click(nextQuestion(event) {
+	event.preventDefault()
+});
