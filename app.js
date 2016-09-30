@@ -103,12 +103,32 @@ function renderQuestionCounter(state, element) {
 	var text = (state.currentQuestion + 1) + "/" + state.questions.length;
 	element.text(text);
 }
+//starts the quiz 
+function renderApp(state, element) {
+	Object.keys(element).forEach(function(route) {
+		elements[route].hide();
+	});
+	elements(state.route].show();
+		if(state.route === "start") {
+			renderQuestionsPage(state,elements[start.route]);
+		};
+		
+//fills in question block - question counter is current question
+//question text is the  actual question
+//choices is the answers
+function renderQuestionsPage(state, element){
+	renderQuestionCounter(state, element.find('.question-count'));
+  	renderQuestionText(state, element.find('.question-text'));
+  	renderChoices(state, element.find('.choices'));
+}
+}
 
 //event listeners
 //quiz start button listener
 $('.start_quiz').click(function(event) {
 	event.preventDefault();
 	nextQuestion(state);
+	renderApp(state);
 });
 //quiz reset button listener - set counters to 0
 $('.reset_quiz').click(function(event) {
