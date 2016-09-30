@@ -2,7 +2,7 @@
 var state = {
 	//questions is an object that stores the multiple question values 
 	//text, choices, and correctInputIndex. 
-	var questions = [ 
+	questions = [ 
 	{ 
 		text: "What is the name of the dinosaur that Harry Dresden reanimates in the novel, 'Dead Beat'?",
 		choices: ["Lucy", "Sue", "Nessie", "Rexy"],
@@ -54,21 +54,21 @@ var state = {
 		correctInputIndex: 0
 	}
 	]
-	var totalQuestions = questions.length,
-	var currentScore = 0, //number right
-	var	currentQuestion = 0, //index of current question
+	totalQuestions = questions.length,
+	currentScore = 0, //number right
+	currentQuestion = 0, //index of current question
 	
-	var feedback_correct = "Good Job!  You didn't disappoint me.",
-	var feedback_incorrect = "Oh, well, no.  That's not the answer.  Are you sure you read closely enough?",
-	var feedback_complete = "You've finished the quiz.  Good job.  Let's see how you did.",
+	feedback_correct = "Good Job!  You didn't disappoint me.",
+	feedback_incorrect = "Oh, well, no.  That's not the answer.  Are you sure you read closely enough?",
+	feedback_complete = "You've finished the quiz.  Good job.  Let's see how you did.",
 	
-	var route = "start" //??
+	route = "start" //??
 }
 
 //functions that modify the state object
 //asks question (game start)
-function askQuestion(state, question) {
-
+function setRoute(state,route) {
+	state.route = route;
 }
 //question counter update
 //	//each time askQuestion call questionCounter +=1
@@ -84,14 +84,17 @@ function askQuestion(state, question) {
 function quizReset(state) {
 	state.currentScore = 0,
 	state.currentQuestion = 0,
-	//setRoute(state, "start")??
+	setRoute(state, "start");
 } 
 
 function nextQuestion(state) {
-if (state.currentQuestion === state.questions.length) {
-	state.feedback_complete;
-}
-}
+	if (state.currentQuestion === state.questions.length) {
+		setRoute(state,"feedback_complete");
+	}
+	else {
+		setRoute(state, "question");
+	}
+};
 
 
 //functions that render the state object
