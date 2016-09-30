@@ -1,7 +1,7 @@
 //state object
 var state = {
 	//questions is an object that stores the multiple question values 
-	//text, choices, and correctInputIndex.
+	//text, choices, and correctInputIndex. 
 	var questions = [ 
 	{ 
 		text: "What is the name of the dinosaur that Harry Dresden reanimates in the novel, 'Dead Beat'?",
