@@ -163,7 +163,7 @@ function renderAnswerFeedbackPage(state, element) {
 function renderFinalFeedbackPage(state,element) {
 	renderfinalFeedbackText(state, element.find(".results_text"));
 };
-//counter - 
+//counter adds 1 to the index so counter doesn't start at 0- 
 function renderQuestionCounter(state, element) {
 	var text = (state.currentQuestionIndex + 1) + "/" + state.questions.length;
 	element.text(text);
@@ -221,7 +221,7 @@ var page_elements = {
 	"start":$(".start_page"),
 	"question":$(".questions_page"),
 	"answer_feedback": $(".answer_feedback_page"),
-	"final_Feedback": $(".final_feedback_page")
+	"final_feedback": $(".final_feedback_page")
 };
 //quiz start button listener
 $("form[name='game_start']").submit(function(event) {
