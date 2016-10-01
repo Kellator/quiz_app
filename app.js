@@ -2,7 +2,7 @@
 var state = {
 	//questions is an object that stores the multiple question values 
 	//text, choices, and correctInputIndex. 
-	questions = [ 
+	questions: [ 
 	{ 
 		text: "What is the name of the dinosaur that Harry Dresden reanimates in the novel, 'Dead Beat'?",
 		choices: ["Lucy", "Sue", "Nessie", "Rexy"],
@@ -53,16 +53,27 @@ var state = {
 		choices: ["John Marcone", "Harley McFinn", "Jared Kincaid", "Lex Hamilton"],
 		correctInputIndex: 0
 	}
-	]
-
-	currentScore = 0, //number right
-	currentQuestionIndex = 0, //index of current question
+	],
 	
-	feedbackCorrect = "Good Job!  You didn't disappoint me.",
-	feedbackIncorrect = "Oh, well, no.  That's not the answer.  Are you sure you read closely enough?",
-	feedbackComplete = "You've finished the quiz.  Good job.  Let's see how you did.",
-	lastCorrectAnswer = false,
-	route = "start" //keeping track of where you're supposed to be looking
+	feedbackCorrect: [
+		"Good Job!  You didn't disappoint me.",
+		"I knew all that time with your nose in a book would pay off",
+		"Hey, maybe you should be writing this quiz.",
+		"Are you in cahoots with the Leanansidhe?  Because you seem to know an awful lot about this stuff. "
+	],
+	feedbackIncorrect: [
+		"Oh, well, no.  That's not the answer.  Are you sure you read closely enough?",
+		"Ugh, did you pay attention at all when you were reading?",
+		"What did you do?  Just watch the t.v. show?",
+		"If Morgan were still alive, you'd have the Doom of Damocles exacted immediately.",
+		"Well, this is sort of a disappointment.  Maybe you should check out your local library."
+	],
+	feedbackComplete: "You've finished the quiz.  Good job.  Let's see how you did.",
+	score: 0, //number right
+	currentQuestionIndex: 0, //index of current question
+	lastCorrectAnswer: false,
+	route: "start", //keeping track of where you're supposed to be looking
+	feedbackRandom: 0
 };
 
 //functions that modify the state object
@@ -72,9 +83,26 @@ function setRoute(state, route) {
 };
 //reset game
 function quizReset(state) {
-	state.currentScore = 0,
+	state.score = 0,
 	state.currentQuestionIndex = 0,
 	setRoute(state, "start");
+};
+
+//chooses current quiz question with corresponding answer
+//also creates boolean for lastAnswerCorrect by comparing with answer @ index
+//increments score
+function answerQuestion(state, answer) {
+	var currentQuestion = state.questions[state.currentQuestionIndex];
+	state.lastAnswerCorrect = currentQuestion.correctInputAnswer === answer;
+	if (state.lastAnswerCorrect) {
+		state.score++;
+	}
+	selectFeedback(state);
+	setRoute(state, "answer_feedback");
+};
+//selectFeedback function uses math module to select random number for feedback option
+function selectFeedback(state) {
+	state.feedbackRandom = Math.random();
 };
 //advance quiz to next quesstion. Increases counter.  
 //provides final feebadck answer if quiz completed.
@@ -87,33 +115,26 @@ function nextQuestion(state) {
 		setRoute(state, "question");
 	}
 };
-//chooses current quiz question with corresponding answer
-//also creates boolean for lastAnswerCorrect by comparing with answer @ index
-//increments score
-function answerQuestion(state, answer) {
-	var currentQuestion = state.questions[state.currentQuestionIndex];
-	state.lastAnswerCorrect = currentQuestion.correctInputAnswer === answer;
-	if (state.lastAnswerCorrect) {
-		state.currentScore++;
-	}
-};
+
 //functions that render the state object
-//counter - takes current question index and incremenets
-function renderQuestionCounter(state, element) {
-	var text = (state.currentQuestion + 1) + "/" + state.questions.length;
-	element.text(text);
-};
+
 //starts the quiz 
-function renderApp(state, element) {
-	Object.keys(element).forEach(function(route) {
+function renderApp(state, elements) {
+	Object.keys(elements).forEach(function(route) {
 		elements[route].hide();
 	});
 	elements[state.route].show();
 		if(state.route === "start") {
-			renderStartPage(state, elements[start.route]);
+			renderStartPage(state, elements[state.route]);
 		}
 		else if (state.route === "question") {
-			renderQUestionPage(state, elements[state.route]);
+			renderQuestionsPage(state, elements[state.route]);
+		}
+		else if (state.route === "answer_feedback") {
+			renderAnswerFeedbackPage(state, elements[state.route]);
+		}
+		else if (state.route === "feedbackComplete") {
+			renderFinalFeedbackPage(state, elements[state.route]);
 		}
 };
 //render start page in cource code - doesn't do anything b/c start page
@@ -125,10 +146,29 @@ function renderStartPage(state,element) {
 //fills in question block - question counter is current question
 //question text is the  actual question
 //choices is the answers
-function renderQuestionsPage(state, element){
+function renderQuestionsPage(state, element) {
 	renderQuestionCounter(state, element.find('.question_count'));
   	renderQuestionText(state, element.find('.question_text'));
   	renderChoices(state, element.find('.choices'));
+};
+//renderAnswerFeedbackPage changes the feedback header, text, and provides a continue button
+function renderAnswerFeedbackPage(state, element) {
+	renderAnswerFeedbackText(state, element.find(".feedback_text"));
+	renderNextButtonText(state, element.find(".answer_submit"));
+};
+function renderAnswerFeedbackText(state, element) {
+  var choices = state.lastAnswerCorrect ? state.feedbackCorrect : state.feedbackIncorrect;
+  var text = choices[Math.floor(state.feedbackRandom * choices.length)];
+  element.text(text);
+};
+//renderFinalFeedbackPage provides the end feedback to the user including comment 
+function renderFinalFeedbackPage(state,element) {
+	renderfinalFeedbackText(state, element.find(".results_text"));
+};
+//counter - 
+function renderQuestionCounter(state, element) {
+	var text = (state.currentQuestionIndex + 1) + "/" + state.questions.length;
+	element.text(text);
 };
 //renders currently asked question
 function renderQuestionText(state, element) {
@@ -142,7 +182,7 @@ function renderChoices(state, element) {
 	var currentQuestion = state.questions[state.currentQuestionIndex];
 	var choices = currentQuestion.choices.map(function(choice, index) {
 		return (
-			"<li>" + "<input type='radio' name= 'user-answer' value'" + index + "' required>;" + 
+			"<li>" + "<input type='radio' name= 'user-answer' value'" + index + "' required>" + 
 			"<label>" + choice + "</label>" + "</li>"
 		);
 	});
@@ -153,8 +193,10 @@ function renderChoices(state, element) {
 //event listeners
 var page_elements = {
 	"start":$(".start_page"),
-	"question":$(".questions_page")
-}
+	"question":$(".questions_page"),
+	"answer_feedback": $(".answer_feedback_page"),
+	"final_Feedback": $(".final_feedback_page")
+};
 //quiz start button listener
 $("form[name='game_start']").submit(function(event) {
 	event.preventDefault();
@@ -167,9 +209,21 @@ $('.reset_quiz').click(function(event) {
 	quizReset(state);
 	renderApp(state, page_elements);
 });
-//allows user to submit answer and move on to next question
-$('.answer_submit').click(function(event) {
-	advance(state);
+
+//checks user answer
+$("form[name ='current_question']").submit(function(event) {
+	event.preventDefault();
+	var answer = $("input[name='user_answer']:checked").val();
+	answer = parseInt(answer, 10);
+	answerQuestion(state, answer);
 	renderApp(state, page_elements);
 });
+
+//allows user to submit answer and move on to next question
+$('.answer_submit').click(function(event) {
+	event.preventDefault();
+	nextQuestion(state);
+	renderApp(state, page_elements);
+});
+
 $(function() {renderApp(state, page_elements);});

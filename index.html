@@ -10,8 +10,8 @@
 </head>
 <body>
 	<header>
-		<div class="row">
-			<div class=" start_page col_12">
+		<div class="start_page row"><!--Inline styling added because this should only be seen by js-->
+			<div class="col_12">
 				<h1>The Dresden Files Novels Pop Quiz</h1>
 				<h3>How much do you know about this wizard Harry?</h3>
 				<div class="container">
@@ -22,25 +22,30 @@
 				</div>	
 	</header>
 
-	<div class="questions_page col_12">
+	<div class="questions_page col_12" style = "display:none;">
 			<div class="row ">
 				<div class="question_block col_6">
 				<h3><span class="question_count"></span> : <span class="question_text"></span></h3>
 				<form name="current_question">
 					<ol class="choices"></ol>
-					<button type="submit" class="answer_submit col_4">Puttin' on the boots!<br> Submit Answer</button>
-					<button class="restart_quiz col_4">Stars and Stones!<br>Do Over</button>
+					<button type="submit" class="answer_submit col_4">Puttin' on the boots!<br> Let's Go!</button>
 					</form>
 				</div>
 			</div>
 	</div>
 
+    <div class="answer_feedback_page" style="display: none;">
+        <div class="feedback_container">
+        	<h3 class="feedback_text"></h3>
+        	<button class="see_next">Keep Going!</button>
+        </div>
+    </div>
 
-      <div class="final-feedback-page">
+    <div class="final_feedback_page" style = "display:none;">
         <h1>Results</h1>
         <p class="results-text"></p>
-        <button class="restart-game">Start over</button>
-      </div>
+        <button class="restart_quiz col_2">Stars and Stones!<br>Do Over</button>
+    </div>
 	
 
 	<footer>
