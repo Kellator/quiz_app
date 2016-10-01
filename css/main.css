@@ -81,7 +81,7 @@ button:hover {
 	color: #708090;
 }
 
-h1, h3 {
+h1, h3, h6, p {
 	text-align: center;
 	color: #FFFFFF
 }
@@ -102,7 +102,4 @@ li {
 }
 footer {
 	color: #FFFFFF;
-}
-.hidden {
-	display: none;
 }

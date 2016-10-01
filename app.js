@@ -93,7 +93,7 @@ function quizReset(state) {
 //increments score
 function answerQuestion(state, answer) {
 	var currentQuestion = state.questions[state.currentQuestionIndex];
-	state.lastAnswerCorrect = currentQuestion.correctInputAnswer === answer;
+	state.lastAnswerCorrect = currentQuestion.correctInputIndex === answer;
 	if (state.lastAnswerCorrect) {
 		state.score++;
 	}
@@ -155,7 +155,7 @@ function renderQuestionsPage(state, element) {
 };
 //renderAnswerFeedbackPage changes the feedback header, text, and provides a continue button
 function renderAnswerFeedbackPage(state, element) {
-	rencerAnswerFeedbackHEader(state, element.find("feedback_header"));
+	renderAnswerFeedbackHeader(state, element.find(".feedback_header"));
 	renderAnswerFeedbackText(state, element.find(".feedback_text"));
 	renderNextButtonText(state, element.find(".answer_submit"));
 };
