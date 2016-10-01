@@ -62,17 +62,15 @@ ol, li {
 	margin-left: auto;
 }
 
-/*.restart_quiz {
-	height: 75px;
-	font-size: 24px;
-	background-color: #26466D;
-	color: #FFFFFF;
-	border-radius: 10px;
-	float: right;
-	display: inline-block;
-}*/
 
-.answer_submit, .reset_quiz {
+
+.answer_submit {
+	padding: 4px;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+.reset_quiz, .submit_button {
 	padding: 4px;
 	border-radius: 10px;
 	margin-top: 20px;
