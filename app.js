@@ -54,88 +54,122 @@ var state = {
 		correctInputIndex: 0
 	}
 	]
-	totalQuestions = questions.length,
+
 	currentScore = 0, //number right
-	currentQuestion = 0, //index of current question
+	currentQuestionIndex = 0, //index of current question
 	
-	feedback_correct = "Good Job!  You didn't disappoint me.",
-	feedback_incorrect = "Oh, well, no.  That's not the answer.  Are you sure you read closely enough?",
-	feedback_complete = "You've finished the quiz.  Good job.  Let's see how you did.",
-	
-	route = "start" //??
-}
+	feedbackCorrect = "Good Job!  You didn't disappoint me.",
+	feedbackIncorrect = "Oh, well, no.  That's not the answer.  Are you sure you read closely enough?",
+	feedbackComplete = "You've finished the quiz.  Good job.  Let's see how you did.",
+	lastCorrectAnswer = false,
+	route = "start" //keeping track of where you're supposed to be looking
+};
 
 //functions that modify the state object
 //asks question (game start)
 function setRoute(state, route) {
 	state.route = route;
-}
-//question counter update
-//	//each time askQuestion call questionCounter +=1
-//	state.totalAskedQuestions++
-//}
-
-//questions right wrong counter
-//if question answer correctly +=1
-//if answered incorrectly counter remains the same
-//answer question
-
-//reset
+};
+//reset game
 function quizReset(state) {
 	state.currentScore = 0,
-	state.currentQuestion = 0,
+	state.currentQuestionIndex = 0,
 	setRoute(state, "start");
-} 
-
+};
+//advance quiz to next quesstion. Increases counter.  
+//provides final feebadck answer if quiz completed.
 function nextQuestion(state) {
-	if (state.currentQuestion === state.questions.length) {
-		setRoute(state,"feedback_complete");
+	state.currentQuestionIndex++;
+	if (state.currentQuestionIndex === state.questions.length) {
+		setRoute(state,"feedbackComplete");
 	}
 	else {
 		setRoute(state, "question");
 	}
 };
-
-
+//chooses current quiz question with corresponding answer
+//also creates boolean for lastAnswerCorrect by comparing with answer @ index
+//increments score
+function answerQuestion(state, answer) {
+	var currentQuestion = state.questions[state.currentQuestionIndex];
+	state.lastAnswerCorrect = currentQuestion.correctInputAnswer === answer;
+	if (state.lastAnswerCorrect) {
+		state.currentScore++;
+	}
+};
 //functions that render the state object
 //counter - takes current question index and incremenets
 function renderQuestionCounter(state, element) {
 	var text = (state.currentQuestion + 1) + "/" + state.questions.length;
 	element.text(text);
-}
+};
 //starts the quiz 
 function renderApp(state, element) {
 	Object.keys(element).forEach(function(route) {
 		elements[route].hide();
 	});
-	elements(state.route].show();
+	elements[state.route].show();
 		if(state.route === "start") {
-			renderQuestionsPage(state,elements[start.route]);
-		};
-		
+			renderStartPage(state, elements[start.route]);
+		}
+		else if (state.route === "question") {
+			renderQUestionPage(state, elements[state.route]);
+		}
+};
+//render start page in cource code - doesn't do anything b/c start page
+//is preloaded in HTML.  Included in the source code to account for the view
+//likely used in other apps and pages so good to include as reference
+function renderStartPage(state,element) {
+};
+
 //fills in question block - question counter is current question
 //question text is the  actual question
 //choices is the answers
 function renderQuestionsPage(state, element){
-	renderQuestionCounter(state, element.find('.question-count'));
-  	renderQuestionText(state, element.find('.question-text'));
+	renderQuestionCounter(state, element.find('.question_count'));
+  	renderQuestionText(state, element.find('.question_text'));
   	renderChoices(state, element.find('.choices'));
-}
-}
+};
+//renders currently asked question
+function renderQuestionText(state, element) {
+	var currentQuestionText = state.questions[state.currentQuestionIndex];
+	element.text(currentQuestionText.text);
+};
+//renders question choices into radio input
+//chooses question based on index
+//creates copy of choices array and performs function to create radio inputs
+function renderChoices(state, element) {
+	var currentQuestion = state.questions[state.currentQuestionIndex];
+	var choices = currentQuestion.choices.map(function(choice, index) {
+		return (
+			"<li>" + "<input type='radio' name= 'user-answer' value'" + index + "' required>;" + 
+			"<label>" + choice + "</label>" + "</li>"
+		);
+	});
+	element.html(choices);
+};
+
 
 //event listeners
+var page_elements = {
+	"start":$(".start_page"),
+	"question":$(".questions_page")
+}
 //quiz start button listener
-$('.start_quiz').click(function(event) {
+$("form[name='game_start']").submit(function(event) {
 	event.preventDefault();
-	nextQuestion(state);
-	renderApp(state);
+	setRoute(state, "question");
+	renderApp(state, page_elements);
 });
 //quiz reset button listener - set counters to 0
 $('.reset_quiz').click(function(event) {
 	event.preventDefault();
 	quizReset(state);
+	renderApp(state, page_elements);
 });
 //allows user to submit answer and move on to next question
 $('.answer_submit').click(function(event) {
-	event.preventDefault();
+	advance(state);
+	renderApp(state, page_elements);
 });
+$(function() {renderApp(state, page_elements);});

@@ -11,12 +11,14 @@
 <body>
 	<header>
 		<div class="row">
-			<div class="col_12">
+			<div class=" start_page col_12">
 				<h1>The Dresden Files Novels Pop Quiz</h1>
 				<h3>How much do you know about this wizard Harry?</h3>
 				<div class="container">
 					<img class="col_6" src="images/dresden_files_tv_cover.jpg" alt="image of actor Paul Blackthorne from Harry Desden t.v. series">
-					<button class="start_quiz col_4">Test Yourself</button>
+					<form name="game_start">
+						<button class="start_quiz col_4">Test Yourself</button>
+					</form>
 				</div>	
 	</header>
 
@@ -26,12 +28,19 @@
 				<h3><span class="question_count"></span> : <span class="question_text"></span></h3>
 				<form name="current_question">
 					<ol class="choices"></ol>
-					<button class="answer_submit col_4">Puttin' on the boots!<br> Submit Answer</button>
+					<button type="submit" class="answer_submit col_4">Puttin' on the boots!<br> Submit Answer</button>
 					<button class="restart_quiz col_4">Stars and Stones!<br>Do Over</button>
 					</form>
 				</div>
 			</div>
 	</div>
+
+
+      <div class="final-feedback-page">
+        <h1>Results</h1>
+        <p class="results-text"></p>
+        <button class="restart-game">Start over</button>
+      </div>
 	
 
 	<footer>
