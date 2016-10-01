@@ -68,7 +68,7 @@ var state = {
 		"If Morgan were still alive, you'd have the Doom of Damocles exacted immediately.",
 		"Well, this is sort of a disappointment.  Maybe you should check out your local library."
 	],
-	feedbackComplete: "You've finished the quiz.  Good job.  Let's see how you did.",
+	
 	score: 0, //number right
 	currentQuestionIndex: 0, //index of current question
 	lastCorrectAnswer: false,
@@ -153,44 +153,11 @@ function renderQuestionsPage(state, element) {
   	renderQuestionText(state, element.find('.question_text'));
   	renderChoices(state, element.find('.choices'));
 };
-//renders question choices into radio input
-//chooses question based on index
-//creates copy of choices array and performs function to create radio inputs
-function renderChoices(state, element) {
-	var currentQuestion = state.questions[state.currentQuestionIndex];
-	var choices = currentQuestion.choices.map(function(choice, index) {
-		return (
-			'<li>' + 
-			'<input type="radio" name="user_answer" value="" ' + index +'"" required>' + 
-			'<label>' + choice + '</label>' + '</li>'
-		);
-	});
-	element.html(choices);
-};
-//renders a header for correct or incorrect answers
-function renderAnswerFeedbackHeader(state, element) {
-  var html = state.lastAnswerCorrect ?
-      "<h6 class='user-was-correct'>Yes!</h6>" :
-      "<h1 class='user-was-incorrect'>Umm, no...</>";
-
-  element.html(html);
-};
 //renderAnswerFeedbackPage changes the feedback header, text, and provides a continue button
 function renderAnswerFeedbackPage(state, element) {
 	rencerAnswerFeedbackHEader(state, element.find("feedback_header"));
 	renderAnswerFeedbackText(state, element.find(".feedback_text"));
 	renderNextButtonText(state, element.find(".answer_submit"));
-};
-function renderAnswerFeedbackText(state, element) {
-  var choices = state.lastAnswerCorrect ? state.feedbackCorrect : state.feedbackIncorrect;
-  var text = choices[Math.floor(state.feedbackRandom * choices.length)];
-  element.text(text);
-};
-//changes text displayed in next button if quiz has more questions or if it is complete
-function renderNextButtonText(state, element) {
-    var text = state.currentQuestionIndex < state.questions.length - 1 ?
-      "Next" : "How did I do?";
-  element.text(text);
 };
 //renderFinalFeedbackPage provides the end feedback to the user including comment 
 function renderFinalFeedbackPage(state,element) {
@@ -206,6 +173,43 @@ function renderQuestionText(state, element) {
 	var currentQuestionText = state.questions[state.currentQuestionIndex];
 	element.text(currentQuestionText.text);
 };
+//renders question choices into radio input
+//chooses question based on index
+//creates copy of choices array and performs function to create radio inputs
+function renderChoices(state, element) {
+	var currentQuestion = state.questions[state.currentQuestionIndex];
+	var choices = currentQuestion.choices.map(function(choice, index) {
+		return (
+			'<li>' + 
+				'<input type="radio" name="user_answer" value="" ' + index +'"" required>' + 
+				'<label>' + choice + '</label>' + 
+			'</li>'
+		);
+	});
+	element.html(choices);
+};
+//renders a header for correct or incorrect answers
+function renderAnswerFeedbackHeader(state, element) {
+  var html = state.lastAnswerCorrect ?
+      "<h6 class='user-was-correct'>Yes!</h6>" :
+      "<h1 class='user-was-incorrect'>Umm, no...</>";
+  element.html(html);
+};
+
+function renderAnswerFeedbackText(state, element) {
+  var choices = state.lastAnswerCorrect ? state.feedbackCorrect : state.feedbackIncorrect;
+  var text = choices[Math.floor(state.feedbackRandom * choices.length)];
+  element.text(text);
+};
+//changes text displayed in next button if quiz has more questions or if it is complete
+function renderNextButtonText(state, element) {
+    var text = state.currentQuestionIndex < state.questions.length - 1 ?
+      "Next" : "How did I do?";
+  element.text(text);
+};
+
+
+
 //provides final score of quiz
 function renderFinalFeedbackText(state, element) {
   var text = "You got " + state.score + " out of " +
@@ -242,6 +246,7 @@ $("form[name ='current_question']").submit(function(event) {
 });
 
 //allows user to submit answer and move on to next question
+//event.preventDefault acts weird - users can skip answers but are requested to submit
 $('.answer_submit').click(function(event) {
 	event.preventDefault();
 	nextQuestion(state);
