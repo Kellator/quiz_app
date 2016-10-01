@@ -83,8 +83,8 @@ function setRoute(state, route) {
 };
 //reset game
 function quizReset(state) {
-	state.score = 0,
-	state.currentQuestionIndex = 0,
+	state.score = 0;
+	state.currentQuestionIndex = 0;
 	setRoute(state, "start");
 };
 
@@ -119,23 +119,25 @@ function nextQuestion(state) {
 //functions that render the state object
 
 //starts the quiz 
+//defaults to hiding all routes- shows only current route
 function renderApp(state, elements) {
 	Object.keys(elements).forEach(function(route) {
 		elements[route].hide();
 	});
 	elements[state.route].show();
-		if(state.route === "start") {
-			renderStartPage(state, elements[state.route]);
-		}
-		else if (state.route === "question") {
-			renderQuestionsPage(state, elements[state.route]);
-		}
-		else if (state.route === "answer_feedback") {
-			renderAnswerFeedbackPage(state, elements[state.route]);
-		}
-		else if (state.route === "feedbackComplete") {
-			renderFinalFeedbackPage(state, elements[state.route]);
-		}
+
+	if(state.route === "start") {
+		renderStartPage(state, elements[state.route]);
+	}
+	else if (state.route === "question") {
+		renderQuestionsPage(state, elements[state.route]);
+	}
+	else if (state.route === "answer_feedback") {
+		renderAnswerFeedbackPage(state, elements[state.route]);
+	}
+	else if (state.route === "feedbackComplete") {
+		renderFinalFeedbackPage(state, elements[state.route]);
+	}
 };
 //render start page in cource code - doesn't do anything b/c start page
 //is preloaded in HTML.  Included in the source code to account for the view
@@ -151,14 +153,43 @@ function renderQuestionsPage(state, element) {
   	renderQuestionText(state, element.find('.question_text'));
   	renderChoices(state, element.find('.choices'));
 };
+//renders question choices into radio input
+//chooses question based on index
+//creates copy of choices array and performs function to create radio inputs
+function renderChoices(state, element) {
+	var currentQuestion = state.questions[state.currentQuestionIndex];
+	var choices = currentQuestion.choices.map(function(choice, index) {
+		return (
+			'<li>' + 
+			'<input type="radio" name="user_answer" value="" ' + index +'"" required>' + 
+			'<label>' + choice + '</label>' + '</li>'
+		);
+	});
+	element.html(choices);
+};
+//renders a header for correct or incorrect answers
+function renderAnswerFeedbackHeader(state, element) {
+  var html = state.lastAnswerCorrect ?
+      "<h6 class='user-was-correct'>Yes!</h6>" :
+      "<h1 class='user-was-incorrect'>Umm, no...</>";
+
+  element.html(html);
+};
 //renderAnswerFeedbackPage changes the feedback header, text, and provides a continue button
 function renderAnswerFeedbackPage(state, element) {
+	rencerAnswerFeedbackHEader(state, element.find("feedback_header"));
 	renderAnswerFeedbackText(state, element.find(".feedback_text"));
 	renderNextButtonText(state, element.find(".answer_submit"));
 };
 function renderAnswerFeedbackText(state, element) {
   var choices = state.lastAnswerCorrect ? state.feedbackCorrect : state.feedbackIncorrect;
   var text = choices[Math.floor(state.feedbackRandom * choices.length)];
+  element.text(text);
+};
+//changes text displayed in next button if quiz has more questions or if it is complete
+function renderNextButtonText(state, element) {
+    var text = state.currentQuestionIndex < state.questions.length - 1 ?
+      "Next" : "How did I do?";
   element.text(text);
 };
 //renderFinalFeedbackPage provides the end feedback to the user including comment 
@@ -175,21 +206,12 @@ function renderQuestionText(state, element) {
 	var currentQuestionText = state.questions[state.currentQuestionIndex];
 	element.text(currentQuestionText.text);
 };
-//renders question choices into radio input
-//chooses question based on index
-//creates copy of choices array and performs function to create radio inputs
-function renderChoices(state, element) {
-	var currentQuestion = state.questions[state.currentQuestionIndex];
-	var choices = currentQuestion.choices.map(function(choice, index) {
-		return (
-			"<li>" + "<input type='radio' name= 'user-answer' value'" + index + "' required>" + 
-			"<label>" + choice + "</label>" + "</li>"
-		);
-	});
-	element.html(choices);
+//provides final score of quiz
+function renderFinalFeedbackText(state, element) {
+  var text = "You got " + state.score + " out of " +
+    state.questions.length + " questions right.";
+  element.text(text);
 };
-
-
 //event listeners
 var page_elements = {
 	"start":$(".start_page"),
