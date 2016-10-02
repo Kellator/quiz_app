@@ -161,7 +161,7 @@ function renderAnswerFeedbackPage(state, element) {
 };
 //renderFinalFeedbackPage provides the end feedback to the user including comment 
 function renderFinalFeedbackPage(state,element) {
-	renderfinalFeedbackText(state, element.find(".results_text"));
+	renderFinalFeedbackText(state, element.find(".results_text"));
 };
 //counter adds 1 to the index so counter doesn't start at 0- 
 function renderQuestionCounter(state, element) {
@@ -181,8 +181,8 @@ function renderChoices(state, element) {
 	var choices = currentQuestion.choices.map(function(choice, index) {
 		return (
 			'<li>' + 
-				'<input type="radio" name="user_answer" value="" ' + index +'"" required>' + 
-				'<label>' + choice + '</label>' + 
+				'<input type="radio" name="user_answer" value="' + index +'" required>' + 
+				'<label>' + choice + '</label> </input>' + 
 			'</li>'
 		);
 	});
@@ -221,7 +221,7 @@ var page_elements = {
 	"start":$(".start_page"),
 	"question":$(".questions_page"),
 	"answer_feedback": $(".answer_feedback_page"),
-	"final_feedback": $(".final_feedback_page")
+	"feedbackComplete": $(".final_feedback_page")
 };
 //quiz start button listener
 $("form[name='game_start']").submit(function(event) {
@@ -239,10 +239,12 @@ $('.reset_quiz').click(function(event) {
 //checks user answer
 $("form[name ='current_question']").submit(function(event) {
 	event.preventDefault();
-	var answer = $("input[name='user_answer']:checked").val();
+	var answer = $("input[name='user_answer']:checked").attr("value");
+	console.log(answer);
 	answer = parseInt(answer, 10);
 	answerQuestion(state, answer);
 	renderApp(state, page_elements);
+
 });
 
 //allows user to submit answer and move on to next question
